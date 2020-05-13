@@ -1,0 +1,17 @@
+<div class="container" *ngIf="show">
+    <div 
+    class="sk-chase" 
+    [attr.style]="sanitizer.bypassSecurityTrustStyle('--input-color:' + color)"
+    *ngIf="!(customContent.innerHTML||'').trim()">
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+    </div>
+    
+    <div #customContent>
+        <ng-content></ng-content>
+    </div>
+</div>

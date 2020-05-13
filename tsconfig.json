@@ -14,7 +14,17 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-library": [
+        "dist/ngx-library/ngx-library",
+        "dist/ngx-library"
+      ],
+      "ngx-interceptor": [
+        "dist/ngx-interceptor/ngx-interceptor",
+        "dist/ngx-interceptor"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

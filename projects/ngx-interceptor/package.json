@@ -1,0 +1,13 @@
+{
+  "name": "ngx-interceptor",
+  "description": "Angular http interceptor with a default spinner. Highly configurable with several settings and custom message or spinner",
+  "version": "0.0.1",
+  "author": "Gabriel García",
+  "keywords": ["angular", "interceptor", "http", "spinner"],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^9.1.6",
+    "@angular/core": "^9.1.6",
+    "tslib": "^1.10.0"
+  }
+}
