@@ -1,27 +1,100 @@
-# NgxInterceptorLibrary
+# NgxInterceptor
+
+[![npm version](https://badge.fury.io/js/ngx-interceptor.svg)](https://www.npmjs.com/ngx-interceptor)
+[![GitHub issues](https://img.shields.io/github/issues/gabrielgarci/ngx-interceptor.svg)](https://github.com/gabrielgarci/ngx-interceptor/issues)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/gabrielgarci/ngx-interceptor/master/LICENSE)
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
 
-## Development server
+## Install 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+npm i ngx-interceptor
+```
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage 
 
-## Build
+Add ngx-interceptor to your root app file.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```typescript
+//app.modaule.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-## Running unit tests
+import { NgxInterceptorModule } from 'ngx-interceptor';
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  declarations: [ AppComponent ],
+  imports: [
+    BrowserModule,
+    NgxInterceptorModule.forRoot()
+  ],
+  bootstrap: [ AppComponent ]
+})
 
-## Running end-to-end tests
+export class AppModule { }
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```html
+<!-- app.component.html -->
+<ngx-interceptor></ngx-interceptor>
+```
 
-## Further help
+## Settings
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Endpoints filter
+The default behavior of the interceptor is to "catch" every http request. However, the component accepts two kind of inputs to filter these endpoints (exceptions or strict) and will filter every request which contain some of the given text. The input endpoints format could be as an array or an object: 
+```
+const endPoints = [ 'users/id', 'users/create', 'location/nearby'];
+```
+```
+const endPoints = {
+  users: ['id', 'create'],
+  location: ['nearby']
+ }
+ ```
+ The two different endpoints filters are:
+ 
+ - Exceptions: every endpoint will be intercepted except the given ones
+ ```html
+<ngx-interceptor [exceptions]="endPoints"></ngx-interceptor>
+```
+
+-Strict: only the given endpoints will be intercepted
+```html
+<ngx-interceptor [strict]="endPoints"></ngx-interceptor>
+```
+
+### Lag
+The default behavior of the interceptor is to only show the interceptor when there is a lag of 300ms between the request and the response in order to avoid blinking effects. This lag can be modified with the following input:
+```html
+<ngx-interceptor lag="500"></ngx-interceptor>
+```
+In this example the time lag has been changed to 500ms.
+
+
+### Color
+The interceptor has a default spinner to show when it is waiting a response. The spinner color can be changed easily by the following input (accept any kind of CSS color):
+```html
+<ngx-interceptor color="green"></ngx-interceptor>
+```
+or
+```html
+<ngx-interceptor color="#008000"></ngx-interceptor>
+```
+or
+```html
+<ngx-interceptor color="rgb(0, 128, 0)"></ngx-interceptor>
+```
+
+
+### Custom spinner/modal
+Default spinner can be easily replace with a custom spinner or modal wrapping the content inside the ngx-interceptor tag:
+```html
+<ngx-interceptor>
+    //Add here the custom html content
+</ngx-interceptor>
+```

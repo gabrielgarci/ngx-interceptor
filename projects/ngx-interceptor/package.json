@@ -1,9 +1,24 @@
 {
   "name": "ngx-interceptor",
   "description": "Angular http interceptor with a default spinner. Highly configurable with several settings and custom message or spinner",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Gabriel García",
-  "keywords": ["angular", "interceptor", "http", "spinner"],
+  "homepage": "https://github.com/gabrielgarci/ngx-interceptor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gabrielgarci/ngx-interceptor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gabrielgarci/ngx-interceptor/issues"
+  },
+  "keywords": [
+    "angular",
+    "ionic",
+    "interceptor",
+    "http",
+    "spinner",
+    "modal"
+  ],
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^9.1.6",
