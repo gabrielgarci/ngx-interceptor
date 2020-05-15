@@ -1,0 +1,23 @@
+<div class="card" *ngIf="character">
+    <img src="{{character.img}}" alt="" class="card__pic">
+    <div class="card__info">
+        <div class="card-field">
+            <p><strong>Name:</strong></p><p> {{ character.name }}</p>
+        </div>
+        <div class="card-field">
+            <p><strong>Planet:</strong></p><p> {{ character.planet }}</p>
+        </div>
+        <div class="card-field">
+            <p><strong>Species:</strong></p><p> {{ character.species }}</p>
+        </div>
+        <div class="card-field">
+            <p><strong>Status:</strong></p>
+            <p><span 
+                class="status-indicator" 
+                [ngClass]="{
+                    'status-indicator--dead': character.status === 'Dead',
+                    'status-indicator--unknown': character.status === 'unknown'
+                }"></span>{{ character.status }}</p>
+        </div>
+    </div>
+</div>

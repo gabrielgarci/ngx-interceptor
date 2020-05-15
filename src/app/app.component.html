@@ -1,1 +1,16 @@
-<ngx-interceptor></ngx-interceptor>
+<ngx-interceptor color="{{color}}" lag="{{interceptorLag}}"></ngx-interceptor>
+<div class="app">
+    <div class="container">
+        <app-settings 
+            class="settings"
+            [(interceptorDelay)]="interceptorLag"
+            [(requestDelay)]="requestLag"
+            [(inputColor)]="color"
+            (requestData)="onRequestData($event)"
+        ></app-settings>
+        <app-response 
+            class="response" 
+            [character]="character"
+        ></app-response>
+    </div>
+</div>

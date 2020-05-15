@@ -1,0 +1,42 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border-radius: 10px;
+    font-family: 'Special Elite', cursive;
+    color: white;
+    background-color: #555569;
+    box-shadow: 5px 5px 20px #787878;
+    &__pic {
+        border-radius: 10px 10px 0 0;
+    }
+
+    &__info {
+        height: 100%;
+        padding: 15px;
+        .card-field{
+            padding: 10px 0;
+            p {
+                display: table-cell;
+            }
+            p:nth-child(2){
+                padding-left: 10px;
+            }
+        }
+    }
+}
+
+.status-indicator {
+    height: 10px;
+    width: 10px;
+    background-color: green;
+    margin:0 5px;
+    border-radius: 50%;
+    display: inline-block;
+    &--dead {
+        background-color: rgb(219, 0, 0);
+    }
+    &--unknown {
+        background-color: #c0b0b0;
+    }
+}

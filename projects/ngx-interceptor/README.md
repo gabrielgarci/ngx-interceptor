@@ -5,9 +5,6 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/gabrielgarci/ngx-interceptor/master/LICENSE)
 
 
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
-
 ## Install 
 
 ```
@@ -47,11 +44,12 @@ export class AppModule { }
 
 ### Endpoints filter
 The default behavior of the interceptor is to "catch" every http request. However, the component accepts two kind of inputs to filter these endpoints (exceptions or strict) and will filter every request which contain some of the given text. The input endpoints format could be as an array or an object: 
+```typescript
+const endPoints: string[] = [ 'users/id', 'users/create', 'location/nearby'];
 ```
-const endPoints = [ 'users/id', 'users/create', 'location/nearby'];
-```
-```
-const endPoints = {
+or 
+```typescript
+const endPoints: {[key: string]: string} = {
   users: ['id', 'create'],
   location: ['nearby']
  }
@@ -63,7 +61,7 @@ const endPoints = {
 <ngx-interceptor [exceptions]="endPoints"></ngx-interceptor>
 ```
 
--Strict: only the given endpoints will be intercepted
+- Strict: only the given endpoints will be intercepted
 ```html
 <ngx-interceptor [strict]="endPoints"></ngx-interceptor>
 ```
@@ -77,7 +75,7 @@ In this example the time lag has been changed to 500ms.
 
 
 ### Color
-The interceptor has a default spinner to show when it is waiting a response. The spinner color can be changed easily by the following input (accept any kind of CSS color):
+The interceptor has a default blue (#0051ff) spinner to show when it is waiting a response. The spinner color can be changed easily by the following input (accept any kind of CSS color):
 ```html
 <ngx-interceptor color="green"></ngx-interceptor>
 ```
@@ -87,7 +85,7 @@ or
 ```
 or
 ```html
-<ngx-interceptor color="rgb(0, 128, 0)"></ngx-interceptor>
+<ngx-interceptor color="rgb(0,128,0)"></ngx-interceptor>
 ```
 
 
@@ -95,6 +93,6 @@ or
 Default spinner can be easily replace with a custom spinner or modal wrapping the content inside the ngx-interceptor tag:
 ```html
 <ngx-interceptor>
-    //Add here the custom html content
+    //... Add here the custom html content
 </ngx-interceptor>
 ```

@@ -1,0 +1,104 @@
+.settings{
+    display: flex;
+    flex-direction: column;
+    border: 5px solid black;
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px #787878;
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+
+    &__title{
+        margin: 0;
+    }
+
+    &__code{
+        color: rgb(21, 21, 148);
+        text-align: center;
+
+        &--decorator-flag {
+            color:rgb(0, 217, 255);
+        }
+
+        &--decorator-value {
+            color:orange;
+        }
+    }
+
+    &__config{
+        display: flex;
+        flex-wrap: wrap;
+        >div{
+            padding: 0 20px;
+        }
+    }
+
+    &__btn-container{
+        display: flex;
+        justify-content: center;
+
+        .btn {
+            border: none;
+            background-color: #70a0af;
+            border-radius: 10px;
+            font-size: 20px;
+            padding: 10px;
+            color: white;
+            cursor: pointer;
+
+            &:active, &:hover{
+                background-color: #56bad8;
+            }
+        }
+    }
+
+    &__graph {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        padding: 20px 0;
+        .interceptor-graph{
+            color: red;
+            margin: 10px 0;
+            width: 150px;
+            &__line{
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: red;
+                margin: 0 auto;
+            }
+        }
+        .request-graph{
+            color: purple;
+            text-align: center;
+            margin: 10px 0;
+            &__line{
+                width: 100%;
+                height: 5px;
+                background-color: purple;
+            }
+        }
+        .additional-info {
+            font-size: 14px;
+            margin: 0;
+        }
+    }
+}
+
+.setting-field{
+    p{
+        display: inline-block;
+        width: 140px;
+    }
+
+    &__color{
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        position: relative;
+        top: 5px;
+    }
+}

@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy:npm": "ng build ngx-interceptor --prod && cd dist/ngx-interceptor && npm publish",
+    "deploy:demo": "ng build --prod --base-href https://gabrielgarci.github.io/ngx-interceptor/ && npx ngh --dir=dist/ngx-interceptor-library"
   },
   "private": false,
   "dependencies": {

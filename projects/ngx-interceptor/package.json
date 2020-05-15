@@ -1,6 +1,6 @@
 {
   "name": "ngx-interceptor",
-  "description": "Angular http interceptor with a default spinner. Highly configurable with several settings and custom message or spinner",
+  "description": "Angular/Ionic http interceptor which show a default spinner while the app is waiting the http response. Highly configurable with several settings and custom message or spinner",
   "version": "0.0.3",
   "author": "Gabriel García",
   "homepage": "https://github.com/gabrielgarci/ngx-interceptor",

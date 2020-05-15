@@ -16,10 +16,10 @@ export class NgxInterceptorComponent implements OnInit, OnDestroy {
   @Input() public color = '#0051ff';
 
   public show = false;
-  private slowRequests: string[] = [];
-  private pending: string[] = [];
-  private endPoints: string[] = [];
-  private strictMode = false;
+  private slowRequests: string[] = []; // Store the endpoints which exceeds the lag time
+  private pending: string[] = []; // Store every endpoint for which we are waiting a response
+  private endPoints: string[] = []; // Store formatted endpoints for the url filter
+  private strictMode = false; // Define the mode for the formatted endPoints filter
   private subscription: Subscription;
 
   constructor(
@@ -39,6 +39,7 @@ export class NgxInterceptorComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  // Check if the given color is valid
   private isColor(strColor: string): void {
     const s = new Option().style;
     s.color = strColor;
@@ -48,6 +49,7 @@ export class NgxInterceptorComponent implements OnInit, OnDestroy {
     }
   }
 
+  // "Catch" the request
   private subscribeHttp(): void {
     this.subscription = this.httpStateService.state.subscribe((progress: IHttpState) => {
       if (progress && progress.url) {
@@ -56,6 +58,7 @@ export class NgxInterceptorComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Choose between strict or expection mode
   private detectMode(): void {
     if (this.exceptions && this.strict) {
       console.warn('[Interceptor library] exceptions and strict modes have been selected simultaneously. Only exceptions will be considered.');
@@ -68,6 +71,7 @@ export class NgxInterceptorComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Format the input endpoints
   private inputHandler(inputData: string[] | {} | null): void {
     if (Array.isArray(inputData)) {
       this.endPoints = inputData;
@@ -78,6 +82,7 @@ export class NgxInterceptorComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Filter the request depending the mode and given data
   private filterRequest(progress: IHttpState): void {
     if (
       !this.endPoints ||
@@ -88,6 +93,7 @@ export class NgxInterceptorComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Handle the requests and decide if the interceptor is required (there is at least one request in the slowRequests array)
   private httpHandler(progress: IHttpState): void {
     if (progress.state === HttpProgressState.start && !this.pending.some(storedUrl => progress.url === storedUrl)) {
       this.pending.push(progress.url);
