@@ -21,16 +21,18 @@ export class AppComponent {
     this.interceptorLag = requestData.interceptorDelay > 0 ? requestData.interceptorDelay : 0;
     this.requestLag = requestData.requestDelay > 0 ? requestData.requestDelay : 0;
     const randomCharacter = Math.floor(Math.random() * 591);
-    this.http.get(`http://slowwly.robertomurray.co.uk/delay/${this.requestLag}/url/https://rickandmortyapi.com/api/character/${randomCharacter}`)
+    this.http.get(`https://rickandmortyapi.com/api/character/${randomCharacter}`)
       .subscribe(
         (resp: any) => {
-          this.character = {
-            name: resp.name,
-            img: resp.image,
-            status: resp.status,
-            species: resp.species,
-            planet: resp.location.name
-          };
+          setTimeout(() => {
+            this.character = {
+              name: resp.name,
+              img: resp.image,
+              status: resp.status,
+              species: resp.species,
+              planet: resp.location.name
+            };
+          }, this.requestLag);
         },
         err => console.error(err)
       );

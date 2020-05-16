@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
+import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 
 @Component({
   selector: 'app-settings',
@@ -15,6 +16,7 @@ export class SettingsComponent implements OnInit{
   public totalWidth: number;
   public requestWidth: string;
   public interceptorMargin: string;
+  public disableBtn = false;
 
   constructor( ) {}
 
@@ -22,10 +24,10 @@ export class SettingsComponent implements OnInit{
     this.resize();
   }
 
-
   public resize() {
     this.totalWidth = (this.requestDelay > (this.interceptorDelay + 75)) ? this.requestDelay : (this.interceptorDelay);
-    this.interceptorMargin = this.interceptorDelay ? `calc(${((this.interceptorDelay / this.totalWidth) * 100 + '%')} - 175px)` : '0%';
+    this.interceptorMargin = (this.interceptorDelay && this.interceptorDelay > this.requestDelay) ?
+      `calc(${((this.interceptorDelay / this.totalWidth) * 100 + '%')} - 175px)` : '0%';
     this.requestWidth = this.requestDelay ?
       (this.interceptorDelay) ? (this.requestDelay / this.totalWidth) * 100 + '%' : 'calc(100% - 100px)' :
       this.interceptorDelay ? 20 + '%' : 'calc(100% - 100px)';

@@ -14,6 +14,7 @@ export class NgxInterceptorComponent implements OnInit, OnDestroy {
   @Input() public strict: string[] | {} | null = null;
   @Input() public lag = 300;
   @Input() public color = '#0051ff';
+  @Input() public requestLag = 0; // Only for demo
 
   public show = false;
   private slowRequests: string[] = []; // Store the endpoints which exceeds the lag time
@@ -106,10 +107,13 @@ export class NgxInterceptorComponent implements OnInit, OnDestroy {
         }, this.lag);
       }
     } else if (progress.state === HttpProgressState.end && this.pending.some(storedUrl => progress.url === storedUrl)) {
-      this.pending.splice(this.pending.indexOf(progress.url), 1);
-      if (this.lag && this.slowRequests.some(slowRequest => slowRequest === progress.url)) {
-        this.slowRequests.splice(this.slowRequests.indexOf(progress.url), 1);
-      }
+      setTimeout(() => {
+        this.pending.splice(this.pending.indexOf(progress.url), 1);
+        if (this.lag && this.slowRequests.some(slowRequest => slowRequest === progress.url)) {
+          this.slowRequests.splice(this.slowRequests.indexOf(progress.url), 1);
+        }
+        this.show = this.lag ? this.slowRequests.length !== 0 : this.pending.length !== 0;
+      }, this.requestLag);
     }
     this.show = this.lag ? this.slowRequests.length !== 0 : this.pending.length !== 0;
   }

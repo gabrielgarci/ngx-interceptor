@@ -13,7 +13,7 @@
             <h3>Interceptor:</h3>
             <div class="setting-field">
                 <p>Interceptor lag:</p>
-                <input type="number" [(ngModel)]="interceptorDelay" (change)="resize()">
+                <input type="number" [(ngModel)]="interceptorDelay" (keyup)="resize()">
             </div>
             <div class="setting-field">
                 <p>
@@ -30,7 +30,7 @@
             <h3>Request:</h3>
             <div class="setting-field">
                 <p>Request delay:</p>
-                <input type="number" [(ngModel)]="requestDelay" (change)="resize()">
+                <input type="number" [(ngModel)]="requestDelay" (keyup)="resize()">
             </div>
         </div>
     </div>
@@ -54,9 +54,9 @@
             <p>Respone time</p>
         </div>
         <p class="additional-info">*Spinner will appear if interceptor dot is inside the response time.</p>
-        <p class="additional-info">**Request delay does not count possible API delay issues.</p>
+        <p class="additional-info">**Demo is simulating the request delay. Some delays may increase because of own API delay</p>
     </div>
     <div class="settings__btn-container">
-        <button class="btn" (click)="emitRequest()">Test the interceptor!</button>
+        <button class="btn" (click)="emitRequest()" [disabled]="disableBtn == true">Send a request!</button>
     </div>
 </div>
